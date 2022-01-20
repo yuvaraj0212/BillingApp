@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+ <link th:href="@{https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" th:href="@{https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css}">
+  <link th:href="@{https://fonts.googleapis.com/css2?family=Nunito&display=swap}" rel="stylesheet">
+  <link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap}" rel="stylesheet">
+  <link th:href="@{https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap}" rel="stylesheet">
+	<title>sale</title>
+	 <!-- Vendor CSS Files -->
+	<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet"type="text/css">
+  <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet"type="text/css">
+
+  <!-- Template Main CSS File -->
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet"type="text/css">
+<!-- Favicons -->
+  <link th:href="@{/assets/img/favicon.png}" rel="icon">
+  <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+<style>
+#body{
+  
+  margin:32px;
+}
+</style>
+</head>
+<body id='body'>
+	
+
+
+    <div class="pagetitle">
+        <h1>Billing</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active">for worker</li>
+          </ol>
+           <a th:href="@{index}" class="btn btn-warning offset-11 col-1" >Exit</a>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+	
+	<section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card ">
+            <div class="card-body " id="print">
+              <h5 class="card-title">Sale</h5>
+             	<div class="col-lg-12" id="print">
+          			<div class="row" >
+          			
+	          			<div class="col-md-3">
+		                  <div class="form-floating">
+		                    <input type="text" class="form-control" id="floatingCustomerName" placeholder="Customer Name">
+		                    <label for="floatingCustomerName">Customer Name</label>
+		                  </div>
+		                </div>
+		                
+		                <div class="col-md-3">
+		                  <div class="form-floating">
+		                    <input type="number" class="form-control" id="floatingCustomerNumber" placeholder="Customer Number">
+		                    <label for="floatingCustomerNumber">Customer Number</label>
+		                  </div>
+		                </div>
+		                
+		                 <div class="col-md-6">
+		                  <div class="form-floating">
+		                    <textarea  class="form-control" id="floatingCustomerAddress" placeholder="Customer Address"></textarea>
+		                    <label for="floatingCustomerAddress">Customer Address</label>
+		                  </div>
+		                </div>
+						
+            		</div>
+          		</div>
+          		
+          		<hr class="my-4">
+          			
+          		<div class="col-lg-12">
+          			<div class="row">
+          			
+	          			 <table id="myTable" class="table" data-toggle="table" data-mobile-responsive="true" data-pagination="true" data-height="460">
+
+					      <thead>
+					        <tr>
+					       	  <th>#</th>
+					          <th>Product</th>
+					          <th>QTY</th>
+					          <th>Price</th>
+					          <th>Total</th>
+					          <th>Action</th>
+					        </tr>
+					      </thead>
+					      <tbody>
+					        <tr >
+					        <td>
+					          1
+					          </td>
+					          <td>
+					            <select  class="form-control" id="ex1" required>
+					              <option value="">Iphone</option>
+					              <option value="">IPod</option>
+					              <option value="">Galaxy Tab</option>
+					              <option value="">PocoPhone</option>
+					            </select>
+					          </td>
+					          <td >
+					            <input  class="form-control" id="ex2" type="number">
+					          </td>
+					          <td>
+					            <input  class="form-control" id="ex3" type="number">
+					          </td>
+					          <td>
+					            <input  class="form-control" id="ex4" type="number">
+					          </td>
+					          <td>
+					         <!-- <i class="bx bx-x"></i>-->
+					          </td>
+					        </tr>
+					      </tbody>
+					    </table>
+					    <div class="row">
+						    <div class="col-md-3">
+			                   <button class="btn btn-outline-success" id="addrow" onclick="addrow(event)" > Add </button>
+						    </div>
+						     <div class="offset-md-6 col-md-3">
+			                   <strong>Total  :</strong>
+			                   </br></br>
+			                   <a onclick="rint()" class="btn btn-primary float-end" >save</a>
+						    </div>
+					    </div>
+            		</div>
+          		</div>
+			</div>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Billing App</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">Webrixtec</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+
+	<script th:src="@{/js/login.js}" type="text/javascript" ></script> 
+  <script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
+  <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/vendor/chart.js/chart.min.js}"></script>
+  <script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
+  <script th:src="@{/assets/vendor/quill/quill.min.js}"></script>
+  <script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
+  <script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
+  <script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+
+  <!-- Template Main JS File -->
+  <script th:src="@{/assets/js/main.js}"></script>
+  
+  <script>
+    function addrow (event) {
+    let count =event.path[3].children[0].rows.length;
+	var table = document.getElementById("myTable");
+	var addrow = table.insertRow();
+	
+	 addrow.innerHTML = `<tr><td>${count}</td> <td> <select  class="form-control" id="ex1" required> <option value="">Iphone</option> <option value="">IPod</option><option value="">Galaxy Tab</option> <option value="">PocoPhone</option> </select></td><td>  <input  class="form-control" id="ex2" type="number"> </td> <td><input id="ex3" class="form-control" type="number"> </td><td><input id="ex4"  class="form-control" type="number"> </td> <td><button class="btn  form-control" id="addrow" onclick="removerow(event)" > <i class="bx bx-x"></i></button> </td> </tr>`;
+   
+   };
+    function rint(){
+	var body = document.getElementById("body").innerHTML;
+	var data = document.getElementById("print").innerHTML;
+	document.getElementById("body").innerHTML=data;
+	window.print();
+	document.getElementById("body").innerHTML=body;
+}
+     function removerow (event) {
+	let path =event.path[3];
+	var table = document.getElementById("myTable");
+	 table.deleteRow(path.rowIndex);
+	}
+  </script>
+  
+  <script th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js }"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js}" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  <script th:href="@{https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js}"></script>
+
+  <script th:href="@{https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/mobile/bootstrap-table-mobile.min.js}"></script>
+
+
+</body>
+</html>
