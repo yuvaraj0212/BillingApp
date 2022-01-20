@@ -3,28 +3,41 @@ package com.webrixtec.controller;
 import java.io.IOException;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webrixtec.model.Role;
 import com.webrixtec.model.User;
+import com.webrixtec.model.purchaseModel;
 import com.webrixtec.repository.UserRepo;
+import com.webrixtec.repository.purchaseRepo;
 import com.webrixtec.repository.roleRepo;
+import com.webrixtec.service.purchaseService;
 
-@RestController
+@Controller
 public class purchaseControler {
 
 	@Autowired
-	UserRepo userRepo;
+	purchaseService purchaseService;
 	@Autowired
-	roleRepo roleRepo;
+	purchaseRepo purchaseRepo;
+	
+	@PostMapping(value="/addProduct")
+	public String PurchaseProduct(@ModelAttribute(name ="purchaseModel")  purchaseModel product,Model model) throws MessagingException {
+		return purchaseService.addProduct(product,model);
+		
+	}
 	
 	@GetMapping(value ="/export")
 	 public void downloadPDFResource(HttpServletResponse response) throws IOException {
@@ -39,23 +52,5 @@ public class purchaseControler {
 		      document.close();
 	      
 	}	
-//	@PostMapping(value ="/signup")
-//	public Object Signup(@RequestBody User user )   {
-//		 String email = user.getEmail();
-//		 String phone = user.getPhone();
-//		 String userName = user.getUserName();
-//		 String password = user.getPassword();
-//		 Set<Role> role = roleRepo.findByRoleName("worker");
-//		 if (email != null && phone != null && userName != null && password != null && role != null) {
-//			User userDetails = new User();
-//			userDetails.setEmail(email);
-//			userDetails.setPassword(password);
-//			userDetails.setPhone(phone);
-//			userDetails.setUserName(userName);
-//			userDetails.setRoles(role);
-//			userRepo.save(userDetails);
-//			return userDetails;
-//		}
-//		return "not Added";
-//	}
+
 }

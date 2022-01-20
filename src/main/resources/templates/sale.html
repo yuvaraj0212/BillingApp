@@ -198,13 +198,12 @@
 					        <td>
 					          1
 					          </td>
+					          <div>
 					          <td>
-					            <select  class="form-control" id="ex1" required>
-					              <option value="">Iphone</option>
-					              <option value="">IPod</option>
-					              <option value="">Galaxy Tab</option>
-					              <option value="">PocoPhone</option>
-					            </select>
+					            <input list="brow" class="form-control" onchange="a(event)">
+									<datalist id="brow" th:each="props:${products}"  >
+									  <option th:text="${props.productName}"></option>
+									</datalist>  
 					          </td>
 					          <td >
 					            <input  class="form-control" id="ex2" type="number">
@@ -212,7 +211,7 @@
 					          <td>
 					            <input  class="form-control" id="ex3" type="number">
 					          </td>
-					           
+					          </div>
 					          <td>
 					            <input  class="form-control" id="ex4" type="number">
 					          </td>
@@ -284,7 +283,14 @@
   <script th:src="@{/assets/js/main.js}"></script>
   
   <script>
-    function addrow (event) {
+  function a(event){
+	let a = event.target.value;
+	
+	let b = document.getElementById("brow").value
+	console.log("a",a);	console.log("b",b);
+	}
+	
+	   function addrow (event) {
     let count =event.path[3].children[0].rows.length;
 	var table = document.getElementById("myTable");
 	var addrow = table.insertRow();

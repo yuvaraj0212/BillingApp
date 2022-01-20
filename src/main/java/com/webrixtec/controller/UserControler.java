@@ -27,8 +27,10 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 import com.webrixtec.model.Role;
 import com.webrixtec.model.User;
+import com.webrixtec.model.purchaseModel;
 import com.webrixtec.repository.roleRepo;
 import com.webrixtec.repository.UserRepo;
+import com.webrixtec.repository.purchaseRepo;
 import com.webrixtec.service.userService;
 
 @Controller
@@ -39,6 +41,9 @@ public class UserControler {
 		UserRepo userRepo;
 		@Autowired
 		roleRepo roleRepo;
+		@Autowired
+		purchaseRepo purchaseRepo;
+		
 		
 		@GetMapping(value ="/demo")
 		public String demo() {
@@ -76,7 +81,10 @@ public class UserControler {
 			return "workers";
 		}
 		@GetMapping(value ="/sale")
-		public String sale() {
+		public String sale(Model model) {
+			List<purchaseModel> products = purchaseRepo.findAll();
+			System.out.println(products);
+			model.addAttribute("products",products );
 			return "sale";
 		}
 		@PostMapping(value ="/login")
