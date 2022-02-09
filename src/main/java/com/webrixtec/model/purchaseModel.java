@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -20,8 +21,10 @@ public class purchaseModel {
     private Long id;
 	private String productName;
 	private String shopName;
-//	private Date purchaseDate;
-//	private Date expiryDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String purchaseDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String expiryDate;
 	private String shopLocation;
 	private String category;
 	private String productCode;
@@ -56,18 +59,18 @@ public class purchaseModel {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-//	public Date getPurchaseDate() {
-//		return purchaseDate;
-//	}
-//	public void setPurchaseDate(Date purchaseDate) {
-//		this.purchaseDate = purchaseDate;
-//	}
-//	public Date getExpiryDate() {
-//		return expiryDate;
-//	}
-//	public void setExpiryDate(Date expiryDate) {
-//		this.expiryDate = expiryDate;
-//	}
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 	public String getShopLocation() {
 		return shopLocation;
 	}

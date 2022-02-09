@@ -13,8 +13,8 @@
 		
 		<form  th:action="@{/login}" th:object="${User}" method="POST" >	
 		<h1>Sign in</h1>
-			<input type="*{email}" th:field="email" placeholder="Email" name="email"/>
-			<input type="*{password}"  th:field="password" placeholder="Password" name="password"/ >
+			<input type="email" th:field="*{email}" placeholder="Email" name="email" />
+			<input type="password"  th:field="*{password}" placeholder="Password" name="password"/ >
 			<!-- <a href="#">Forgot your password?</a> -->
 			<span class="error " th:text="${error}" ></span>
 			<button type="submit">Sign In</button>

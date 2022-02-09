@@ -1,6 +1,9 @@
 package com.webrixtec.service;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 
@@ -8,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.webrixtec.model.billHistory;
+import com.webrixtec.model.customerProduct;
 import com.webrixtec.model.purchaseModel;
+import com.webrixtec.repository.billHistoryRepo;
 import com.webrixtec.repository.purchaseRepo;
 
 @Service
@@ -17,6 +23,9 @@ public class purchaseService {
 	purchaseRepo purchaseRepo;
 	@Autowired
 	FileStorageService FileStorageService;
+	@Autowired
+	billHistoryRepo billHistoryRepo;
+	
 	public String addProduct(purchaseModel product, Model model)throws MessagingException {
 		if (product.getCategory() != null && product.getDiscount() != null && 
 //			product.getExpiryDate() != null &&	&& product.getMfile() != null 
@@ -28,17 +37,18 @@ public class purchaseService {
 			Boolean NameExist = purchaseRepo.existsByProductName(product.getProductName() );
 			
 			if(codeExist || NameExist) {
-				return "product Name or code is already exist";
+				model.addAttribute("productExist", "product Name or code is already exist");
+				 return "purchase";
 			}
 			
 			data.setDiscount(product.getDiscount());
 			data.setCreateDate(new Date());
-//			data.setExpiryDate(product.getExpiryDate());
+			data.setExpiryDate(product.getExpiryDate());
 //			data.setMfile(product.getMfile());
 			data.setProductCode(product.getProductCode());
 			data.setProductName(product.getProductName());
 			data.setProductPrice(product.getProductPrice());
-//			data.setPurchaseDate(product.getPurchaseDate());
+			data.setPurchaseDate(product.getPurchaseDate());
 			data.setQuantity(product.getQuantity());
 			data.setSalePrice(product.getSalePrice());
 			data.setShopLocation(product.getShopLocation());
@@ -54,6 +64,38 @@ public class purchaseService {
 		}
 		model.addAttribute("productSave", false);
 		return "purchase";
-	}
 	
+
+}
+
+public String UpdateProduct(billHistory product, Model model) {
+	billHistory data =new billHistory();
+	
+	System.out.printf("a",product);
+	
+		data.setCustomerName(product.getCustomerName());
+		data.setCustomerPhone(product.getCustomerPhone());
+		data.setCustomerLoction(product.getCustomerLoction());
+		data.setProducts(product.getProducts());
+		data.setTax(product.getTax());
+		data.setTotal(product.getTotal());
+		billHistoryRepo.save(data);
+	return "redirect:/sale";
+
+}
+
+public String workerUpdateProduct(billHistory product, Model model) {
+billHistory data =new billHistory();
+	
+	System.out.printf("a",product);
+	
+	data.setCustomerName(product.getCustomerName());
+	data.setCustomerPhone(product.getCustomerPhone());
+	data.setCustomerLoction(product.getCustomerLoction());
+	data.setProducts(product.getProducts());
+	data.setTax(product.getTax());
+	data.setTotal(product.getTotal());
+	billHistoryRepo.save(data);
+return "redirect:/billingpage";
+}
 }

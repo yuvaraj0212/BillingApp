@@ -10,4 +10,5 @@ public interface roleRepo extends JpaRepository<Role, Long>{
 
 	Set<Role> findByRoleName(String string);
 
+
 }

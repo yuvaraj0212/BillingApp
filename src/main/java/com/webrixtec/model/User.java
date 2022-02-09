@@ -21,10 +21,8 @@ public class User {
 	    private String userName;
 	    private String phone;
 	
-		@NotNull(message = "email must not be empty")
 	    private String email;
 		 private Date date;
-		@NotNull(message = "password must not be empty")
 	    private String password;
 
 	    @ManyToMany(cascade=CascadeType.ALL)
@@ -87,6 +85,17 @@ public class User {
 
 		public Set<Role> getRoles() {
 			return roles;
+		}
+
+		public User(Long id, String userName, String phone, String email, Date date, String password, Set<Role> roles) {
+			super();
+			this.id = id;
+			this.userName = userName;
+			this.phone = phone;
+			this.email = email;
+			this.date = date;
+			this.password = password;
+			this.roles = roles;
 		}
 
 		public void setRoles(Set<Role> roles) {
