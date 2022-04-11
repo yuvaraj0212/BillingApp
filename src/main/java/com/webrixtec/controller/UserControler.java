@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +28,12 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 import com.webrixtec.model.Role;
 import com.webrixtec.model.User;
-import com.webrixtec.model.purchaseModel;
+import com.webrixtec.model.billHistory;
+import com.webrixtec.model.createBillModel;
+import com.webrixtec.model.vendors;
 import com.webrixtec.repository.roleRepo;
 import com.webrixtec.repository.UserRepo;
-import com.webrixtec.repository.purchaseRepo;
+import com.webrixtec.repository.createBillModelRepo;
 import com.webrixtec.service.userService;
 
 @Controller
@@ -42,17 +45,15 @@ public class UserControler {
 	@Autowired
 	roleRepo roleRepo;
 	@Autowired
-	purchaseRepo purchaseRepo;
+	createBillModelRepo purchaseRepo;
 
 	@GetMapping(value = "/demo")
-	public String demo() {
+	public String demo(Model model) {
+		model.addAttribute("vendors",new vendors());
 		return "demo";
 	}
-
-	@GetMapping(value = "/purchase")
-	public String purchase() {
-		return "purchase";
-	}
+	
+	
 
 	@GetMapping(value = "/billhistory")
 	public String billhistory() {
@@ -66,9 +67,11 @@ public class UserControler {
 
 	@GetMapping(value = "/billingpage")
 	public String billingpage(Model model) {
-		List<purchaseModel> products = purchaseRepo.findAll();
+		model.addAttribute("billHistory", new billHistory());
+		List<createBillModel> products = purchaseRepo.findAll();
+		int a[]=new int[3];
 		model.addAttribute("products", products);
-
+		model.addAttribute("emtyArray", a);
 		return "billingpage";
 	}
 
@@ -77,13 +80,19 @@ public class UserControler {
 		model.addAttribute("User", new User());
 		return "index";
 	}
-
-	@GetMapping(value = "/Store")
-	public String Store(Model model) {
-		List<purchaseModel> Store = purchaseRepo.findAll();
-		model.addAttribute("Store", Store);
-		return "Store";
+	
+	@GetMapping(value = "/index")
+	public String indexs(Model model) {
+		model.addAttribute("User", new User());
+		return "index";
 	}
+	
+//	@GetMapping(value = "/Store")
+//	public String Store(Model model) {
+//		List<createBillModel> Store = purchaseRepo.findAll();
+//		model.addAttribute("Store", Store);
+//		return "Store";
+//	}
 	
 	@GetMapping(value = "/billprint")
 	public String billprint(Model model) {
@@ -100,7 +109,7 @@ public class UserControler {
 
 	@GetMapping(value = "/sale")
 	public String sale(Model model) {
-		List<purchaseModel> products = purchaseRepo.findAll();
+		List<createBillModel> products = purchaseRepo.findAll();
 		model.addAttribute("products", products);
 		return "sale";
 	}

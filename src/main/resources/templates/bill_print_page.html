@@ -6,26 +6,13 @@
 	<link th:href="@{https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css}" rel="stylesheet"
 		type="text/css">
 	<link rel="stylesheet" th:href="@{https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css}">
-	<link th:href="@{https://fonts.googleapis.com/css2?family=Nunito&display=swap}" rel="stylesheet">
-	<link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap}" rel="stylesheet">
-	<link th:href="@{https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap}" rel="stylesheet">
+	
 	<title>print page</title>
 	<!-- Vendor CSS Files -->
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet" type="text/css">
-
-	<!-- Template Main CSS File -->
-	<link th:href="@{/assets/css/style.css}" rel="stylesheet" type="text/css">
-	<!-- Favicons -->
-	<link th:href="@{/assets/img/favicon.png}" rel="icon">
-	<link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+	
 	<style>
 		#body {
 
@@ -38,101 +25,194 @@
 
 
 
-	<section class=" ">
-		<div class="container mt-5 mb-3">
+	<section class=" " id="print">
+		<div class="container ">
 			<div class="row d-flex justify-content-center">
-				<div class="col-md-8">
-					<div class="card">
-						<div class="d-flex flex-row p-2"> <img src="https://i.imgur.com/vzlPPh3.png" width="48">
-							<div class="d-flex flex-column"> <span class="font-weight-bold">bill </span>
-								<small>bil no</small> </div>
+				<div class=" card col-md-8">
+					<div class=" border border-secondary">
+
+						<div>
+							<b class="d-flex justify-content-end">CELL :0987654321</b>
+							<b class="d-flex justify-content-end">CELL :0987654321</b>
 						</div>
-						<hr>
-						<div class="table-responsive p-2">
+
+						<div class="text-center mt-1"style=" border-bottom: thin solid #A9A9A9;">
+							<h4>ANGUSAMY HARDWARES</h4>
+							<Span class=" mt-0">thondi road,kalaiyarkoil</Span>
+							<h5>CASH BILL</h5>
+						</div>
+
+						
+
+						<div class="table-responsive   d-flex">
+							<table class="table table-borderless" style=" border-right: thin solid #A9A9A9;">
+								<tbody>
+									<tr class="">
+										<td>To : FIRST GRAMNETS PVT LTD</td>
+									</tr>
+									<tr class="d-flex justify-content-center">
+										<td class="font-weight-bold">
+											No:22,vadapalani, <br>
+											chennai, pin code:600028<br>
+											delivered at vadapalani.<br>
+											GSTN:123DGY23412
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+
 							<table class="table table-borderless">
 								<tbody>
-									<tr class="add">
-										<td>To</td>
-									</tr>
-									<tr class="content">
-										<td class="font-weight-bold">Google <br>Attn: John Smith Pymont <br>Australia
+									<tr class="">
+										<td>
+											Payment Term : CASH <br>
+											Bill No : 02 <br>
+											Date : 20-02-2022 <br>
 										</td>
-										
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<hr>
-						<div class="products p-2">
-							<table class="table table-borderless">
-								<tbody>
-									<tr class="add">
-										<td>Description</td>
-										<td>Days</td>
-										<td>Price</td>
-										<td class="text-center">Total</td>
+						<div class="products ">
+							<table class="table table-bordered">
+								<thead>
+									<tr class="">
+										<td class="text-center">S.No</td>
+										<td class="text-center">Description</td>
+										<td class="text-center">Qty</td>
+										<td class="text-center">Rate</td>
+										<td class="text-center">CGST %</td>
+										<td class="text-center">CGST AMT</td>
+										<td class="text-center">SGST %</td>
+										<td class="text-center">SGST AMT</td>
+										<td class="text-center">Total Amount</td>
 									</tr>
-									<tr class="content">
+								</thead>
+								<tbody>
+
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
 										<td>Website Redesign</td>
 										<td>15</td>
 										<td>$1,500</td>
 										<td class="text-center">$22,500</td>
 									</tr>
-									<tr class="content">
-										<td>Logo & Identity</td>
-										<td>10</td>
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
 										<td>$1,500</td>
-										<td class="text-center">$15,000</td>
-									</tr>
-									<tr class="content">
-										<td>Marketing Collateral</td>
-										<td>3</td>
+										<td class="text-center">$22,500</td>
+										<td>Website Redesign</td>
+										<td>15</td>
 										<td>$1,500</td>
-										<td class="text-center">$4,500</td>
+										<td class="text-center">$22,500</td>
+									</tr>
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+									</tr>
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+									</tr>
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+									</tr>
+									<tr class="text-center">
+										<td>1</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
+										<td>Website Redesign</td>
+										<td>15</td>
+										<td>$1,500</td>
+										<td class="text-center">$22,500</td>
 									</tr>
 								</tbody>
-							</table>
-						</div>
-						<hr>
-						<div class="products p-2">
-							<table class="table table-borderless">
-								<tbody>
-									<tr class="add">
+								<tfoot>
+									<tr class="text-center" style=" border: bold solid black;">
 										<td></td>
-										<td>Subtotal</td>
-										<td>GST(10%)</td>
-										<td class="text-center">Total</td>
-									</tr>
-									<tr class="content">
+										<td>Total</td>
+										<td>122</td>
 										<td></td>
-										<td>$40,000</td>
-										<td>2,500</td>
-										<td class="text-center">$42,500</td>
+										<td class="text-center"></td>
+										<td>2000</td>
+										<td></td>
+										<td>1,500</td>
+										<td class="text-center">$22,500</td>
 									</tr>
-								</tbody>
+								</tfoot>
 							</table>
 						</div>
-						<hr>
-						<div class="address p-2">
-							<table class="table table-borderless">
-								<tbody>
-									<tr class="add">
-										<td>Bank Details</td>
-									</tr>
-									<tr class="content">
-										<td> Bank Name : ADS BANK <br> Swift Code : ADS1234Q <br> Account Holder : Jelly
-											Pepper <br> Account Number : 5454542WQR <br> </td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+
+						<div class="products">
+							<div class="col-8">
+								<table class="table  col-9">
+									<thead class="">
+										<tr class="add">
+											<td>Table value</td>
+											<td>CGST %</td>
+											<td>AMT</td>
+											<td>SGST %</td>
+											<td>AMT</td>
+											<td>NET %</td>
+											<td>AMT</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="content">
+											<td>40,000</td>
+											<td>9.00</td>
+											<td>1,000</td>
+											<td>9.00</td>
+											<td>1,000</td>
+											<td>18.00</td>
+											<td>12,000</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+								<h6 class="d-flex justify-content-end" style=" border-bottom: thin solid #A9A9A9;"><b class="px-4">Rounded off : </b> 0.10 </h6>
+
+								<h6 class="d-flex justify-content-end "style=" border-bottom: thin solid #A9A9A9;"><b class="px-4">NET AMOUNT : </b> 39.999 Rs</h6>
+								<b class="d-flex justify-content-end  ">For  ANGUSAMY HARDWARES</b>
+								<p class="d-flex justify-content-end  ">Authorised Signatory</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	</main><!-- End #main -->
 
 	<!-- Vendor JS Files -->
 

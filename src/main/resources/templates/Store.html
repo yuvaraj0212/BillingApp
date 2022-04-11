@@ -69,65 +69,84 @@
 	  <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+ <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/dashboard}">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/purchase}">
-          <i class="bx bxs-basket"></i>
-          <span>Purchase</span>
-        </a>
-      </li>
-      
-     <li class="nav-item">
-        <a class="nav-link " th:href="@{/Store}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Store</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/sale}">
-          <i class="bi bi-file-earmark"></i>
-          <span>Bill</span>
-        </a>
-      </li>
-      
-       <li class="nav-item">
-        <a class="nav-link " th:href="@{/billhistory}">
-          <i class="bi bi-book"></i>
-          <span>Bill History</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/workers}">
-          <i class="bi bi-file-earmark-person"></i>
-          <span>Workers</span>
-        </a>
-      </li>
-      
-      <li class="nav-item" style="position: fixed;bottom: 0;">
-           <a class="nav-link " th:href="@{/index}">
-             <i class="bi bi-box-arrow-right"></i>
-             <span>Sign Out</span>
-          </a>
-	  </li>
-	  
-    </ul>
-     
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/dashboard}">
+					<i class="bi bi-grid"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bx bxs-basket"></i>
+					<span>Purchase Reports</span>
+				</a>
+				<ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a class="" th:href="@{/pbill}">
+							<i class="bi bi-circle"></i><span>Bill</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="bi bi-circle"></i><span>Purchase orders</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/vendor}">
+							<i class="bi bi-circle"></i><span>Vendors</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="bi bi-circle"></i><span>Expenses</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/Store}">
+					<i class="bi bi-menu-button-wide"></i>
+					<span>Store</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/sale}">
+					<i class="bi bi-file-earmark"></i>
+					<span>Bill</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/billhistory}">
+					<i class="bi bi-book"></i>
+					<span>Bill History</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/workers}">
+					<i class="bi bi-file-earmark-person"></i>
+					<span>Workers</span>
+				</a>
+			</li>
+
+			<li class="nav-item" style="position: fixed;bottom: 0;">
+				<a class="nav-link " th:href="@{/}">
+					<i class="bi bi-box-arrow-right"></i>
+					<span>Sign Out</span>
+				</a>
+			</li>
+		</ul>
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>General Tables</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/dashboard}">Dashboard</a></li>
@@ -142,9 +161,8 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-
+              <h5 class="card-title">Store</h5>
+              
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -159,10 +177,8 @@
                 <tbody>
                   <tr th:each="store:${Store}">
                     <th scope="row" th:text="${store.getId()}"></th>
-                     <th scope="row" th:text="${store.getProductName()}"></th>
-                      <th scope="row" th:text="${store.getCategory()}"></th>
-                       <th scope="row" th:text="${store.getQuantity()}"></th>
-                        <th scope="row" th:text="${store.getCreateDate()}"></th>
+                     <th scope="row" th:text="${store.getVendorName()}"></th>
+                      
                   </tr>
                   
                 </tbody>

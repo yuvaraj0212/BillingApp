@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Invoice</title>
+
+	<!-- Vendor CSS Files -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet" type="text/css">
+
+	<!-- Template Main CSS File -->
+	<link th:href="@{/assets/css/style.css}" rel="stylesheet" type="text/css">
+	<!-- Favicons -->
+	<link th:href="@{/assets/img/favicon.png}" rel="icon">
+	<link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+
+
+
+</head>
+
+<body>
+	<div>
+
+		<!-- ======= Header ======= -->
+		<header id="header" class="header fixed-top d-flex align-items-center">
+
+			<div class="d-flex align-items-center justify-content-between">
+				<a th:href="@{/dashboard}" class="logo d-flex align-items-center">
+					<img src="assets/img/logo.png" alt="" />
+					<span class="d-none d-lg-block">Admin</span>
+				</a>
+				<i class="bi bi-list toggle-sidebar-btn"></i>
+			</div><!-- End Logo -->
+
+
+			<nav class="header-nav ms-auto">
+				<ul class="d-flex align-items-center">
+
+
+
+
+					</li><!-- End Messages Nav -->
+
+					<li class="nav-item  ">
+
+						<a class="nav-link nav-profile d-flex align-items-center pe-0 mx-4">
+							<img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+							<span class="d-none d-md-block  ps-2" th:text="${username}"></span>
+						</a><!-- End Profile Iamge Icon -->
+
+					</li><!-- End Profile Nav -->
+
+				</ul>
+			</nav><!-- End Icons Navigation -->
+
+		</header><!-- End Header -->
+
+		<!-- ======= Sidebar ======= -->
+			<aside id="sidebar" class="sidebar">
+
+		<ul class="sidebar-nav" id="sidebar-nav">
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/dashboard}">
+					<i class="bi bi-grid"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#Sales-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bi bi-cart-check-fill"></i>
+					<span>Sales Reports</span>
+				</a>
+				<ul id="Sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a th:href="@{/invoice}">
+							<i class="bi bi-circle"></i><span>Invoice</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/products}">
+							<i class="bi bi-circle"></i><span>Products</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bx bxs-basket"></i>
+					<span>Purchase Reports</span>
+				</a>
+				<ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a class="" th:href="@{/pbill}">
+							<i class="bi bi-circle"></i><span>Bill</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/p-order}">
+							<i class="bi bi-circle"></i><span>Purchase orders</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/vendor}">
+							<i class="bi bi-circle"></i><span>Vendors</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="bi bi-circle"></i><span>Expenses</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/sale}">
+					<i class="bi bi-file-earmark"></i>
+					<span>Bill</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/billhistory}">
+					<i class="bi bi-book"></i>
+					<span>Bill History</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/workers}">
+					<i class="bi bi-file-earmark-person"></i>
+					<span>Workers</span>
+				</a>
+			</li>
+
+			<li class="nav-item" style="position: fixed;bottom: 0;">
+				<a class="nav-link " th:href="@{/}">
+					<i class="bi bi-box-arrow-right"></i>
+					<span>Sign Out</span>
+				</a>
+			</li>
+		</ul>
+
+	</aside><!-- End Sidebar-->
+
+		<main id="main" class="main">
+
+			<div class="pagetitle">
+				<h1>Invoice</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a th:href="@{/dashboard}">Home</a></li>
+						<li class="breadcrumb-item active">Invoice</li>
+					</ol>
+				</nav>
+				<div class="alert alert-warning alert-dismissible fade show col-lg-8" role="alert"
+					th:if="${productSave == true}">
+					product Added sucessfull
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="alert alert-warning alert-dismissible fade col-lg-8 show" role="alert"
+					th:if="${productSave == false}">
+					product Added unsucessfully
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="alert alert-warning alert-dismissible fade col-lg-8 show" role="alert"
+					th:if="${productExist}">
+					<h6 th:text="${productExist}"></h6>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div><!-- End Page Title -->
+
+			<section class="section dashboard">
+
+
+				<div class="col-12">
+					<div class="card">
+
+						<div class="card-body pt-2">
+
+							<!-- Vertically centered Modal -->
+							<button type="button" class="btn btn-outline-success btn-sm offset-11 col-1 " style=""
+								data-bs-toggle="modal" data-bs-target="#verticalycentered">
+								add Invoice
+							</button>
+
+							<div class="modal fade" id="verticalycentered" tabindex="-1">
+								<div class="modal-dialog modal-xl">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Create Invoice</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form class="row g-3 needs-validation" th:action="@{/createbill}"
+												th:object="${purchaseModel}" method="POST" novalidate>
+												<h6>vendore details</h6>
+												<div class="col-md-3">
+													<div class="form-floating">
+														<input type="text" th:field"*{vendorName}" name="vendorName"
+															class="form-control" id="floatingName"
+															placeholder="vendorName" autocomplete="off" required>
+														<div class="invalid-feedback">Please enter a vendore
+															Name!</div>
+														<label for="floatingName">vendor Name</label>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-floating">
+														<input type="text" th:field"*{placeOfSupply}"
+															class="form-control" name="placeOfSupply"
+															id="floatingshopName" placeholder="placeOfSupply"
+															autocomplete="off" required>
+														<div class="invalid-feedback">Please enter a place of
+															supply!</div>
+														<label for="floatingshopName">place Of Supply</label>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-floating">
+														<input type="Date" th:field"{purchaseDate}" name="purchaseDate"
+															class="form-control" autocomplete="off"
+															id="floatingproductHSN" placeholder="purchase Date">
+														<label for="floatingproductHSN"> purchase
+															Date</label>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-floating">
+														<input type="number" th:field"*{purchaseNo}" name="purchaseNo"
+															class="form-control" autocomplete="off"
+															id="floatingPassword" placeholder="Expiry Date">
+														<label for="floatingproductCode">bill
+															No</label>
+													</div>
+												</div>
+
+												<hr>
+
+												<h6>product details</h6>
+												
+
+												
+											<!-- Table with stripped rows -->
+											<table class="table table-dark">
+												<thead>
+												<tr>
+												<div class="col-md-2">
+													<div class="form-floating">
+														<input type="text" th:field"*{products.productName}" name="productName"
+															class="form-control" id="floatingAtPrice"
+															placeholder="location" autocomplete="off" required>
+														<div class="invalid-feedback">Please enter a
+															productName!</div>
+														<label for="floatingAtPrice">ProductName</label>
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="form-floating">
+														<input type="text" th:field"*products.description}" name="description"
+															class="form-control" autocomplete="off"
+															id="floatingPassword" placeholder="product Category"
+															required>
+														<div class="invalid-feedback">Please enter a
+															description!</div>
+														<label for="floatingCategory">description</label>
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="form-floating">
+														<input type="number" th:field"*{products.quantity}" name="quantity"
+															class="form-control" autocomplete="off"
+															id="floatingQuantity" placeholder="Quantity" required>
+														<div class="invalid-feedback">Please enter a
+															Quantity!</div>
+														<label for="floatingQuantity">Quantity</label>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<div class="form-floating ">
+														<select class="form-select" th:field"*{products.unit}" name="unit"
+															id="floatingDiscount" aria-label="Unit" required>
+															<option selected value="kg">kg</option>
+															<option value="Gm">Gm</option>
+															<option value="litter">litter</option>
+															<option value="pieces">pieces</option>
+															<option value="no">No</option>
+															<option value="meters">meters</option>
+															<option value="pack">pack</option>
+															<option value="inch">inch</option>
+														</select>
+														<div class="invalid-feedback">Please enter a Unit!
+														</div>
+														<label for="floatingDiscount">Unit</label>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<div class="form-floating">
+														<select type="number" th:field"*{products.taxRate}" name="taxRate"
+															class="form-control" id="floatingTax rate" required>
+															<option value="1">gst 0%</option>
+															<option value="1">gst 1%</option>
+															<option value="3">gst 3%</option>
+															<option value="5">gst 5%</option>
+															<option value="12">gst 12%</option>
+															<option value="18">gst 18%</option>
+														</select>
+														<div class="invalid-feedback">Please enter a Tax
+															rate!</div>
+														<label for="floatingTax rate">Tax</label>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<div class="form-floating ">
+														<input class="form-control" th:field"*{products.discount}"
+															name="discount" id="floatingDiscount" autocomplete="off"
+															required>
+															
+														<label for="floatingDiscount">Discount</label>
+													</div>
+												</div>
+
+
+												<div class="col-md-2">
+													<div class="form-floating">
+														<input type="number" th:field"*{products.purchasePrice}"
+															name="purchasePrice" class="form-control"
+															id="floatingAtPrice" placeholder="purchasePrice" required>
+														<div class="invalid-feedback">Please enter a
+															purchasePrice!</div>
+														<label for="floatingAtPrice">purchase Price</label>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<div class="form-floating">
+														<button type="submit"
+															class="btn btn-success btn-lg">Add</button>
+													</div>
+												</div>
+												</tr>
+													<tr>
+														<th scope="col">P.No</th>
+														<th scope="col">ProductName</th>
+														<th scope="col">description</th>
+														<th scope="col">unit</th>
+														<th scope="col">quantity</th>
+														<th scope="col">purchasePrice</th>
+														<th scope="col">value</th>
+														<th scope="col">discount</th>
+														<th scope="col">CGST</th>
+														<th scope="col">SGST</th>
+														<th scope="col">IGST</th>
+														<th scope="col">action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="store:${Store}">
+														<th scope="col"></th>
+														<th scope="col" th:text="${store.getProductName()}"></th>
+														<th scope="col" th:text="${store.getCategory()}"></th>
+														<th scope="col" th:text="${store.getQuantity()}"></th>
+														<th scope="col" th:text="${store.getCreateDate()}"></th>
+														<th scope="col" th:text="${store.getId()}"></th>
+														<th scope="col" th:text="${store.getProductName()}"></th>
+														<th scope="col" th:text="${store.getCategory()}"></th>
+														<th scope="col" th:text="${store.getQuantity()}"></th>
+														<th scope="col" th:text="${store.getCreateDate()}"></th>
+														<th scope="col" th:text="${store.getId()}"></th>
+														<th scope="col" th:text="${store.getProductName()}"></th>
+														
+													</tr>
+													
+												</tbody>
+												
+											</table>
+											<!-- End Table with stripped rows 
+												<h5>total : </h5>-->
+												 <div class="offset-md-10 col-md-3">
+			                   <strong>Total  :</strong>
+			                   </br></br>
+												 </div>
+											<div class="modal-footer">
+																					
+														<button type="submit" class="btn btn-primary">Submit</button>
+													<button type="reset" class="btn btn-secondary">Reset</button>
+												</div>
+											</form>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div><!-- End Vertically centered Modal-->
+
+
+						<table class="table datatable">
+
+							<thead>
+								<tr>
+									<th scope="col">No.</th>
+									<th scope="col">vendor Name</th>
+									<th scope="col">bill No</th>
+									<th scope="col">issue data</th>
+									<th scope="col">ammount</th>
+									<th scope="col">tax</th>
+									<th scope="col">total</th>
+									<th scope="col">status</th>
+									<th scope="col">amount paid</th>
+									<th scope="col">balance</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- <tr th:each="Vendor:${listStore}">
+									<th scope="row" th:text="${Vendor.getId()}"></th>
+									<th scope="row" th:text="${Vendor.getVendorName()}"></th>
+									<th scope="row" th:text="${Vendor.getPurchaseNo()}"></th>
+									<th scope="row" th:text="${Vendor.getPurchaseDate()}"></th>
+									
+
+								</tr> -->
+
+							</tbody>
+						</table>
+						<!-- End Table with stripped rows -->
+
+					</div>
+				</div>
+
+			</section>
+
+		</main><!-- End #main -->
+		<!-- Vendor JS Files -->
+		<script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
+		<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/assets/vendor/chart.js/chart.min.js}"></script>
+		<script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
+		<script th:src="@{/assets/vendor/quill/quill.min.js}"></script>
+		<script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
+		<script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
+		<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+
+		<!-- Template Main JS File -->
+		<script th:src="@{/assets/js/main.js}"></script>
+		<script>
+			function productdetail() {
+				console.log("working")
+			}
+		</script>
+	</div>
+</body>
+
+</html>

@@ -62,66 +62,100 @@
   </header><!-- End Header -->
 
 	  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  	<aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+		<ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/dashboard}">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/purchase}">
-          <i class="bx bxs-basket"></i>
-          <span>Purchase</span>
-        </a>
-      </li>
-      
-     <li class="nav-item">
-        <a class="nav-link " th:href="@{/Store}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Store</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link " th:href="@{/sale}">
-          <i class="bi bi-file-earmark"></i>
-          <span>Bill</span>
-        </a>
-      </li>
-      
-       <li class="nav-item">
-        <a class="nav-link " th:href="@{/billhistory}">
-          <i class="bi bi-book"></i>
-          <span>Bill History</span>
-        </a>
-      </li>
-      
-       <li class="nav-item">
-        <a class="nav-link " th:href="@{/workers}">
-          <i class="bi bi-file-earmark-person"></i>
-          <span>Workers</span>
-        </a>
-      </li>
-      
-      <li class="nav-item" style="position: fixed;bottom: 0;">
-           <a class="nav-link " th:href="@{/index}">
-             <i class="bi bi-box-arrow-right"></i>
-             <span>Sign Out</span>
-          </a>
-	  </li>
-    </ul>
-     
-  </aside><!-- End Sidebar-->
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/dashboard}">
+					<i class="bi bi-grid"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#Sales-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bi bi-cart-check-fill"></i>
+					<span>Sales Reports</span>
+				</a>
+				<ul id="Sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a th:href="@{/invoice}">
+							<i class="bi bi-circle"></i><span>Invoice</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/products}">
+							<i class="bi bi-circle"></i><span>Products</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bx bxs-basket"></i>
+					<span>Purchase Reports</span>
+				</a>
+				<ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a class="" th:href="@{/pbill}">
+							<i class="bi bi-circle"></i><span>Bill</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/p-order}">
+							<i class="bi bi-circle"></i><span>Purchase orders</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/vendor}">
+							<i class="bi bi-circle"></i><span>Vendors</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="bi bi-circle"></i><span>Expenses</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/sale}">
+					<i class="bi bi-file-earmark"></i>
+					<span>Bill</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/billhistory}">
+					<i class="bi bi-book"></i>
+					<span>Bill History</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/workers}">
+					<i class="bi bi-file-earmark-person"></i>
+					<span>Workers</span>
+				</a>
+			</li>
+
+			<li class="nav-item" style="position: fixed;bottom: 0;">
+				<a class="nav-link " th:href="@{/}">
+					<i class="bi bi-box-arrow-right"></i>
+					<span>Sign Out</span>
+				</a>
+			</li>
+		</ul>
+
+	</aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Workers</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/dashboard}">Dashboard</a></li>
@@ -137,7 +171,7 @@
           <div class="card">
             <div class="card-body">
             <div class=" row mx-2">
-              <h5 class="card-title">Datatables</h5>
+              <h5 class="card-title">workes Page</h5>
               
               <!-- Vertically centered Modal -->
               <button type="button" class="btn btn-outline-success btn-sm offset-11 col-1 "style="" data-bs-toggle="modal" data-bs-target="#verticalycentered">
@@ -149,7 +183,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Vertically Centered</h5>
+                      <h5 class="modal-title">Create worker</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

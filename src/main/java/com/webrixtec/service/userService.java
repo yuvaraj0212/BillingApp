@@ -5,37 +5,59 @@ import java.util.Set;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
 import com.webrixtec.model.Role;
 import com.webrixtec.model.User;
 import com.webrixtec.repository.UserRepo;
 import com.webrixtec.repository.roleRepo;
 
+
 @Service
 public class userService {
 	@Autowired
 	UserRepo userrepo;
-
+	@Autowired
+	util util;
 	@Autowired
 	roleRepo roleRepo;
 	@Autowired(required=true)
 	private AuthenticationManager authenticationManager;
 	
+//	public String login(User data, Model model) {
+//		Authentication authentication = authenticationManager.authenticate(
+//				new UsernamePasswordAuthenticationToken(data.getEmail(), data.getPassword()));
+//		SecurityContextHolder.getContext().setAuthentication(authentication);
+//		String jwt = util.generateJwtToken(authentication);
+//		customUserDetails userDetails = (customUserDetails) authentication.getPrincipal();
+//		User user = userrepo.findById(userDetails.getId()).orElseThrow(() -> new RuntimeException("user not found"));
+////		user.setToken(jwt);
+//		if (user == null ) {
+//			model.addAttribute("error", "email id is not valid");
+//			return "index";
+//		}
+//		return "dashboard";
+//	}
+	
 	public String login(User data, Model model) {
-		if (data.getEmail() != null || data.getEmail() != "") {
+		if (data.getEmail() != null || data.getEmail() != "" ) {
 			
-			
+			if (data.getPassword() != null || data.getPassword() !="") {
 			User user = userrepo.findByEmail(data.getEmail());
+			if (user == null ) {
+				model.addAttribute("error", "email id is not valid");
+				return "index";
+			}
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String encodedPassword = passwordEncoder.encode(data.getPassword());
 			boolean isPasswordMatch = passwordEncoder.matches(user.getPassword(), encodedPassword);
-//			if (user != null && user.getPassword().equals(data.getPassword())) {
+			System.err.println(isPasswordMatch);
 			if (isPasswordMatch == true) {
 				model.addAttribute("username", user.getUserName());
 				model.addAttribute("user", user);
@@ -46,8 +68,13 @@ public class userService {
 				return "billingpage";
 
 			}
+			model.addAttribute("error", "password in not match");
+			return "index";
+			}
+			model.addAttribute("error", "please enter your password");
+			return "index";
 		}
-		model.addAttribute("error", "invalid email & password");
+		model.addAttribute("error", "please enter your email ");
 		return "index";
 	}
 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>product/service</title>
+
+	<!-- Vendor CSS Files -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet" type="text/css">
+
+	<!-- Template Main CSS File -->
+	<link th:href="@{/assets/css/style.css}" rel="stylesheet" type="text/css">
+	<!-- Favicons -->
+	<link th:href="@{/assets/img/favicon.png}" rel="icon">
+	<link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+
+
+
+</head>
+
+<body>
+	<div>
+
+		<!-- ======= Header ======= -->
+		<header id="header" class="header fixed-top d-flex align-items-center">
+
+			<div class="d-flex align-items-center justify-content-between">
+				<a th:href="@{/dashboard}" class="logo d-flex align-items-center">
+					<img src="assets/img/logo.png" alt="" />
+					<span class="d-none d-lg-block">Admin</span>
+				</a>
+				<i class="bi bi-list toggle-sidebar-btn"></i>
+			</div><!-- End Logo -->
+
+
+			<nav class="header-nav ms-auto">
+				<ul class="d-flex align-items-center">
+
+
+
+
+					</li><!-- End Messages Nav -->
+
+					<li class="nav-item  ">
+
+						<a class="nav-link nav-profile d-flex align-items-center pe-0 mx-4">
+							<img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+							<span class="d-none d-md-block  ps-2" th:text="${username}"></span>
+						</a><!-- End Profile Iamge Icon -->
+
+					</li><!-- End Profile Nav -->
+
+				</ul>
+			</nav><!-- End Icons Navigation -->
+
+		</header><!-- End Header -->
+
+		<!-- ======= Sidebar ======= -->
+			<aside id="sidebar" class="sidebar">
+
+		<ul class="sidebar-nav" id="sidebar-nav">
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/dashboard}">
+					<i class="bi bi-grid"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#Sales-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bi bi-cart-check-fill"></i>
+					<span>Sales Reports</span>
+				</a>
+				<ul id="Sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a th:href="@{/invoice}">
+							<i class="bi bi-circle"></i><span>Invoice</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/products}">
+							<i class="bi bi-circle"></i><span>Products</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" >
+					<i class="bx bxs-basket"></i>
+					<span>Purchase Reports</span>
+				</a>
+				<ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a class="" th:href="@{/pbill}">
+							<i class="bi bi-circle"></i><span>Bill</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/p-order}">
+							<i class="bi bi-circle"></i><span>Purchase orders</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/vendor}">
+							<i class="bi bi-circle"></i><span>Vendors</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="bi bi-circle"></i><span>Expenses</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/sale}">
+					<i class="bi bi-file-earmark"></i>
+					<span>Bill</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/billhistory}">
+					<i class="bi bi-book"></i>
+					<span>Bill History</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " th:href="@{/workers}">
+					<i class="bi bi-file-earmark-person"></i>
+					<span>Workers</span>
+				</a>
+			</li>
+
+			<li class="nav-item" style="position: fixed;bottom: 0;">
+				<a class="nav-link " th:href="@{/}">
+					<i class="bi bi-box-arrow-right"></i>
+					<span>Sign Out</span>
+				</a>
+			</li>
+		</ul>
+
+	</aside><!-- End Sidebar-->
+
+
+		<main id="main" class="main">
+
+			<div class="pagetitle">
+				<h1>Products</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a th:href="@{/dashboard}">Home</a></li>
+						<li class="breadcrumb-item active">Products</li>
+					</ol>
+				</nav>
+				<div class="alert alert-warning alert-dismissible fade show col-lg-8" role="alert"
+					th:if="${productSave == true}">
+					product Added sucessfull
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="alert alert-warning alert-dismissible fade col-lg-8 show" role="alert"
+					th:if="${productSave == false}">
+					product Added unsucessfully
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="alert alert-warning alert-dismissible fade col-lg-8 show" role="alert"
+					th:if="${productExist}">
+					<h6 th:text="${productExist}"></h6>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div><!-- End Page Title -->
+
+			<section class="section dashboard">
+
+
+				<div class="col-12">
+					<div class="card">
+
+						<div class="card-body pt-2">
+
+							<!-- Vertically centered Modal -->
+							<button type="button" class="btn btn-outline-success btn-sm offset-11 col-1 " style=""
+								data-bs-toggle="modal" data-bs-target="#verticalycentered">
+								add Products
+							</button>
+
+							<div class="modal fade" id="verticalycentered" tabindex="-1">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Create Products</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form class="row g-3 needs-validation" novalidate
+												th:action="@{/addProduct}" th:object="${product}" method="POST">
+												<div class="col-6">
+													<label for="userName" class="form-label">product Name</label>
+													<input th:field="*{productName}" type="text" name="productName"
+														class="form-control" required>
+													<div class="invalid-feedback">Please, enter product Name!</div>
+												</div>
+
+												<div class="col-6">
+													<label for="Wokerphone" class="form-label">Description</label>
+													<div class="input-group has-validation">
+														<input th:field="*{description}" type="text"
+															name="description" class="form-control" required>
+														<div class="invalid-feedback">Please, enter description.</div>
+													</div>
+												</div>
+
+												<div class="col-6">
+													<label for="yourPassword" class="form-label">Purchase Rate</label>
+													<input th:field="*{purchaseRate}" type="number" name="purchaseRate"
+														class="form-control" required>
+													<div class="invalid-feedback">Please enter your purchaseRate!</div>
+												</div>
+
+												<div class="col-6">
+													<label for="yourPassword" class="form-label">unit Price INR</label>
+													<input th:field="*{unitPriceINR}" type="text" name="unitPriceINR"
+														class="form-control" required>
+													<div class="invalid-feedback">Please enter your unitPriceINR!</div>
+												</div>
+
+												
+												<div class="col-6">
+													<label for="yourPassword" class="form-label">Quantity</label>
+													<input th:field="*{quantity}" type="number" name="quantity"
+														class="form-control" required>
+													<div class="invalid-feedback">Please enter your Quantity!</div>
+												</div>
+
+												
+													<div class="col-md-3">
+												<label for="floatingDiscount"class="form-label">Unit</label>
+														<select class="form-select" th:field"*{unit}" name="unit"
+															id="floatingDiscount"  required>
+															<option selected value="kg">kg</option>
+															<option value="Gm">Gm</option>
+															<option value="litter">litter</option>
+															<option value="pieces">pieces</option>
+															<option value="no">No</option>
+															<option value="meters">meters</option>
+															<option value="pack">pack</option>
+															<option value="inch">inch</option>
+														</select>
+														<div class="invalid-feedback">Please enter a Unit!</div>
+														
+												</div>
+												<div class="col-md-3">
+														<label for="floatingTax rate" class="form-label">Tax</label>
+														<select type="number" th:field"*{tax}" name="tax"
+															class="form-control" id="floatingTax rate" required>
+															<option value="1">gst 0%</option>
+															<option value="1">gst 1%</option>
+															<option value="3">gst 3%</option>
+															<option value="5">gst 5%</option>
+															<option value="12">gst 12%</option>
+															<option value="18">gst 18%</option>
+														</select>
+														<div class="invalid-feedback">Please enter a Tax
+															rate!</div>
+												</div>
+												<div class="modal-footer">
+													<button class="btn btn-primary w-100" type="submit">save
+														Product</button>
+
+												</div>
+
+											</form>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div><!-- End Vertically centered Modal-->
+
+
+						<table class="table datatable">
+
+							<thead>
+								<tr>
+									<th scope="col">No.</th>
+									<th scope="col">Product Name</th>
+									<th scope="col">description</th>
+									<th scope="col">unit</th>
+									<th scope="col">unitPriceINR</th>
+									<th scope="col">tax</th>
+									<th scope="col">quantity</th>
+									<th scope="col">purchaseRate</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								 <tr th:each="Vendor:${Stock}">
+									<th scope="row" th:text="${Vendor.getId()}"></th>
+									<th scope="row" th:text="${Vendor.getProductName()}"></th>
+									<th scope="row" th:text="${Vendor.getDescription()}"></th>
+									<th scope="row" th:text="${Vendor.getUnit()}"></th>
+									<th scope="row" th:text="${Vendor.getUnitPriceINR()}"></th>
+									<th scope="row" th:text="${Vendor.getTax()}"></th>
+									<th scope="row" th:text="${Vendor.getQuantity()}"></th>
+									<th scope="row" th:text="${Vendor.getPurchaseRate()}"></th>
+
+
+								</tr> 
+
+							</tbody>
+						</table>
+						<!-- End Table with stripped rows -->
+
+					</div>
+				</div>
+
+			</section>
+
+		</main><!-- End #main -->
+		<!-- Vendor JS Files -->
+		<script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
+		<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/assets/vendor/chart.js/chart.min.js}"></script>
+		<script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
+		<script th:src="@{/assets/vendor/quill/quill.min.js}"></script>
+		<script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
+		<script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
+		<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+
+		<!-- Template Main JS File -->
+		<script th:src="@{/assets/js/main.js}"></script>
+		<script>
+			function productdetail() {
+				console.log("working")
+			}
+		</script>
+	</div>
+</body>
+
+</html>
